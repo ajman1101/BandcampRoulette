@@ -24,13 +24,17 @@
 
 	<div id="search">
 	
-	<input type="text" class="clearField" value="Enter a Random Word" />
-	<input type="button" class="myButton" name="search" value="Find My Song!">
-	<input type="button" class="myButton" name="randomWord" value="Random Word">
+        <form action="/" method="get">
+            <input type="text" class="clearField" name="search" value="Enter a Random Word" />
+            <input type="submit" class="myButton" value="Find My Song!"/>
+            <input type="submit" class="myButton" name="randomWord" value="Random Word"/>
+        </form>
 	</div>
 	
 	<div id="curSong">
-	
+        {% if song %}
+           <iframe src="{{ song }}" width=400 height=100></iframe>
+        {% endif %}
 	</div>
 	
 	<div id="goodSongs">
