@@ -4,7 +4,7 @@ from BeautifulSoup import BeautifulSoup
 
 def scrape(query):
 
-    # Check for two word input
+    # Check for multiple word input
     if not isinstance(query, basestring):
         try:
             query = "+".join(query)

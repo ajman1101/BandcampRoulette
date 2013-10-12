@@ -1,7 +1,7 @@
 body
 {
 /*thanks to http://subtlepatterns.com/pixel-weave/ for the background image*/
-background-image:url('pixel_weave.png');
+background-image:url('/static/img/pixel_weave.png');
 background-repeat:repeat;
 font-family:'Libre Baskerville';
 float:center;

@@ -4,10 +4,13 @@ import scrape
 
 app = Flask(__name__)
 
+
 @app.route('/')
-def hello_world():
-    print(request.args)
-    song = scrape.scrape(request.args.get("search"))
+def bandcampRoulette():
+
+    song = None
+    if request.args.get("search"):
+        song = scrape.scrape(request.args.get("search"))
     return render_template("index.html", song=song)
 
 if __name__ == '__main__':
