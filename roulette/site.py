@@ -34,8 +34,7 @@ def addSong():
         if not session.get('liked_songs'):
             session['liked_songs'] = {}
         session['liked_songs'][url] = title
-        return "Song added"
-    return "Song not added"
+    return redirect(url_for('index'))
 
 
 @app.route('/finish')
