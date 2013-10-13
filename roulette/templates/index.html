@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
-	<title>Bandcamp Roulette</title>
-	<meta charset="utf-8">
-	<link rel='stylesheet' type='text/css' href='static/css/style.css'/>
-
+<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+<link rel='stylesheet' type='text/css' href='test.css'/>
+<meta charset="utf-8">
+<!--Commented out for later dwolla integration
 	<script>
 		function playDonate()
 		{
@@ -18,62 +16,71 @@
 		document.getElementById("Donate").style.visibility="hidden";
 		document.getElementById("Fun").style.visibility="hidden";
 		}
-	</script>
-	
+	</script>-->
 </head>
+
 <body>
-	<script>
-	$(document).ready(function() {
-	$('.clearField').clearField();
-	});
-	
-	</script>
-	<div id="title"><b>Bandcamp Roulette</b></div>
-	
+<div id="body">
+
+<div id="header">
+<img src="../static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">
+<h1>Bandcamp Roulette</h1>
+
+<!--Commented out for later dwolla integration
 	<div id="payment">
 
         <button type="button" class="myButton" id="Donate" onclick="playDonate()">Play for Donation</button>
 	<button type="button" class="myButton" id="Fun" onclick="playFun()">Play for Fun</button>
 
 
-	</div>
-	
-	<div id="search">
-        <form action="" method="get">
-            <input type="text" name="username" style="font-size:28px;"/><br>
-            <input type="text" name="search" style="font-size:28px;"/><br>
-            <input type="submit" class="myButton" value="Find My Song!" style="margin-top:20px"/>
-            <input type="submit" class="myButton" name="randomWord" value="Random Word" style="margin-top:20px"/>
-        </form>
-	</div>
+	</div>-->
 
-	<div id="curSong">
-        {% if song %}
-           <iframe src="{{ song }}" width=400 height=100></iframe>
-        {% endif %}
-		<br>
-		<input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
-		<input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
+</div>
+
+	<div id="main">
+
+		<div id="col1">
+				<h1>Rules</h1>
+				1. Think of one or two random words.<br><br>
+				2. Listen.<br><br>
+				3. Take a majority vote. <br> Is the Song Good or Not?<br><br>
+				4. Repeat<br><br>
+				5. Once you have a good list. <br> Chose the best song.<br><br>
+				6. You have found the best song on bandcamp!
+		</div>
+
+		<div id="col23">
+			<div id="col2">
+				<form action="" method="get">
+					Name:<input type="text" name="username" style="font-size:28px;"/><br>
+					Word:<input type="text" name="search" style="font-size:28px;"/><br>
+					<input type="submit" class="myButton" value="Find My Song!" style="margin-top:20px"/>
+					<input type="submit" class="myButton" name="randomWord" value="Random Word" style="margin-top:20px"/>
+				</form>
+
+				<div id="curSong">
+					{% if song %}
+					   <iframe src="{{ song }}" width=400 height=100></iframe>
+					{% endif %}
+					<br>
+					<input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
+					<input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
+				</div>
+			</div>
+		
+
+			<div id="col3">
+				<h1>Good Songs</h1>
+				Good Song Test 1
+
+			</div>
+		</div>
 	</div>
 	
-	<div id="holder">
-	
-		<div id="rules">
-		<h1>Rules</h1>
-		1. Think of one or two random words.<br><br>
-		2. Listen.<br><br>
-		3. Take a majority vote. <br> Is the Song Good or Not?<br><br>
-		4. Repeat<br><br>
-		5. Once you have a good list. <br> Chose the best song.<br><br>
-		6. You have found the best song on bandcamp!<br><br>
-		</div>
-		
-		<div id="goodSongs">
-		<h1>Good Songs</h1>
-		Good Song Test 1
-		
-		</div>
+	<div id="footer">
 	
 	</div>
+</div>
+
 </body>
 </html>
