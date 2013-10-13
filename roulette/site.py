@@ -1,10 +1,7 @@
 from flask import Flask, url_for, redirect, render_template, request, session
 import scrape
 
-from dwolla import DwollaClientApp
-
-from dwolla import DwollaUser
-
+from dwolla import DwollaClientApp, DwollaUser
 
 Dwolla = DwollaClientApp("Q/9GH5LwLTp06+VUj7Rt9iKFgyIOQmFZF0AxTEAYyWoC84P4YN", "ePRDZwcOOTjPbZ5rdyRvZpg6GMpHrUyxyQLNQzowFMiUtov2g")
 
@@ -13,9 +10,7 @@ app.secret_key = "key"
 
 
 @app.route('/')
-def bandcampRoulette():
-
-
+def index():
     oauth_return_url = url_for('dwolla_oauth_return', _external=True)#point back to this file
     permissions = 'send'
     auth_url = Dwolla.init_oauth_url(oauth_return_url, permissions)
@@ -37,7 +32,6 @@ def bandcampRoulette():
 
 @app.route('/like')
 def addSong():
-
     if request.args.get("url") and request.args.get("title"):
         url = request.args["url"]
         title = request.args["title"]
@@ -46,6 +40,17 @@ def addSong():
         session['liked_songs'][url] = title
         return "Song added"
     return "Song not added"
+
+
+@app.route('/finish')
+def finish_songs():
+    if not session['done']:
+        session['done'] = True
+    else:
+        del session['done']
+        session['liked_songs'] = dict()
+    redirect(url_for('index'))
+
 
 #STEP:2 = temp code exchange
 @app.route("/dwolla/oauth_return")
