@@ -19,13 +19,9 @@ def index():
     if request.args.get("search"):
         try:
             url, title = scrape.scrape(request.args.get("search"))
-            if not session.get('all_songs'):
-                session['all_songs'] = {}
-                session['liked_songs'] = {}
-            session['all_songs'][url] = title
         except TypeError as e:
-            print(e)
-            pass
+            url = "No song found"
+            title = None
 
     return render_template("index.html", song=url, title=title, auth_url=auth_url)
 

@@ -17,13 +17,15 @@ def scrape(query):
 
     # Search bandcamp for first artist that appears from the search
     soup = BeautifulSoup(page)
-    song = soup.find('li', 'searchresult').a['href']
+    try:
+        song = soup.find('li', 'searchresult').a['href']
+    except AttributeError:
+        return None
 
     # Search the first artist's page for the first song
     try:
         song_page = urllib2.urlopen(song).read()
         song_soup = BeautifulSoup(song_page)
-
     except Exception as e:
         print(e)
         return None
