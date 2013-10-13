@@ -58,9 +58,9 @@
 
 				<div id="curSong">
 					{% if song %}
-					   <iframe src="{{ song }}" width=400 height=100></iframe><br>
-					    <input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
-					    <input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
+					    <iframe src="{{ song }}" width=400 height=100></iframe><br>			    
+                        <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton" target="_blank"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>
+					    <a id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
 					{% endif %}
 				</div>
 			</div>
@@ -68,7 +68,7 @@
 			<div id="col3">
 				<h1>Good Songs</h1>
                     <ul>
-                    {% for url, title in session.get('songs', {}).items(): %}	
+                    {% for url, title in session.get('liked_songs', {}).items(): %}	
                         <li><a href="{{ url }}">{{ title }}</a></li>
                     {% endfor %}
                     </ul>

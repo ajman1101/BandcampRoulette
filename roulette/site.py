@@ -10,17 +10,32 @@ app.secret_key = "key"
 def bandcampRoulette():
 
     url = None
+    title = None
     if request.args.get("search"):
         try:
             url, title = scrape.scrape(request.args.get("search"))
-            if not session.get('songs'):
-                session['songs'] = {}
-            session['songs'][url] = title
+            if not session.get('all_songs'):
+                session['all_songs'] = {}
+                session['liked_songs'] = {}
+            session['all_songs'][url] = title
         except TypeError as e:
             print(e)
             pass
 
-    return render_template("index.html", song=url)
+    return render_template("index.html", song=url, title=title)
+
+
+@app.route('/like')
+def addSong():
+
+    if request.args.get("url") and request.args.get("title"):
+        url = request.args["url"]
+        title = request.args["title"]
+        if not session.get('liked_songs'):
+            session['liked_songs'] = {}
+        session['liked_songs'][url] = title
+        return "Song added"
+    return "Song not added"
 
 if __name__ == '__main__':
     app.debug = True
