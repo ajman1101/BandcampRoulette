@@ -20,9 +20,15 @@ def scrape(query):
     song = soup.findAll('a', href=True)[16]['href']
 
     # Search the first artist's page for the first song
-    song_page = urllib2.urlopen(song).read()
-    song_soup = BeautifulSoup(song_page)
+    try:
+        song_page = urllib2.urlopen(song).read()
+        song_soup = BeautifulSoup(song_page)
+
+    except Exception as e:
+        print(e)
+        return None
 
     # Print out the url to that song
     song_player = song_soup.findAll('meta', property="og:video")[0]['content']
-    return song_player
+    song_title = song_soup.findAll('meta', property="og:title")[0]['content']
+    return [song_player, song_title]

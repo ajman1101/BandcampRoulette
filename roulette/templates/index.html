@@ -5,7 +5,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
 	<title>Bandcamp Roulette</title>
 	<meta charset="utf-8">
-	<link rel='stylesheet' type='text/css' href='style.css'/>
+	<link rel='stylesheet' type='text/css' href='static/css/style.css'/>
 
 	<script>
 		function playDonate()
@@ -30,24 +30,29 @@
 	</script>
 	<div id="title"><b>Bandcamp Roulette</b></div>
 	
-	<div id="search">
-	
-	<input type="text" class="clearField" value="Enter a Random Word" />
-	<input type="button" class="myButton" name="search" value="Find My Song!">
-	<input type="button" class="myButton" name="randomWord" value="Random Word">
-	</div>
 	<div id="payment">
 
-        <button type="button" id="Donate" onclick="playDonate()">Play for Donation</button>
-	<button type="button" id="Fun" onclick="playFun()">Play for Fun</button>
+        <button type="button" class="myButton" id="Donate" onclick="playDonate()">Play for Donation</button>
+	<button type="button" class="myButton" id="Fun" onclick="playFun()">Play for Fun</button>
 
 
+	</div>
+	
+	<div id="search">
+        <form action="" method="get">
+            <input type="text" name="search" style="font-size:28px;"/><br>
+            <input type="submit" class="myButton" value="Find My Song!" style="margin-top:20px"/>
+            <input type="submit" class="myButton" name="randomWord" value="Random Word" style="margin-top:20px"/>
+        </form>
 	</div>
 
 	<div id="curSong">
         {% if song %}
            <iframe src="{{ song }}" width=400 height=100></iframe>
         {% endif %}
+		<br>
+		<input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
+		<input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
 	</div>
 	
 	<div id="holder">
@@ -65,15 +70,9 @@
 		<div id="goodSongs">
 		<h1>Good Songs</h1>
 		Good Song Test 1
-		<input type="image" src="/"
+		
 		</div>
 	
 	</div>
-	
-	
-	
-
-	
-
 </body>
 </html>
