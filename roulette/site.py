@@ -9,14 +9,18 @@ app.secret_key = "key"
 @app.route('/')
 def bandcampRoulette():
 
-    info = None
+    url = None
     if request.args.get("search"):
-        info = scrape.scrape(request.args.get("search"))
-        if info is not None:
-            session['songs'] = [info[0], info[1]]
-            print(session['songs'])
-            return render_template("index.html", song=info[0], session=session)
-    return render_template("index.html", song=info)
+        try:
+            url, title = scrape.scrape(request.args.get("search"))
+            if not session.get('songs'):
+                session['songs'] = {}
+            session['songs'][url] = title
+        except TypeError as e:
+            print(e)
+            pass
+
+    return render_template("index.html", song=url)
 
 if __name__ == '__main__':
     app.debug = True

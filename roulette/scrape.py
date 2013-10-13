@@ -17,7 +17,7 @@ def scrape(query):
 
     # Search bandcamp for first artist that appears from the search
     soup = BeautifulSoup(page)
-    song = soup.findAll('a', href=True)[16]['href']
+    song = soup.find('li', 'searchresult').a['href']
 
     # Search the first artist's page for the first song
     try:
@@ -29,19 +29,17 @@ def scrape(query):
         return None
 
     # Print out the url to that song
-    try:
-        song_player = song_soup.findAll(
-            'meta', property="og:video")[0]['content']
-        song_title = song_soup.findAll(
-            'meta', property="og:title")[0]['content']
-    except IndexError:
-        albums = song_soup.findAll('a', href=True)
-        artist = albums[0]['href'] + albums[1]['href']
-        artist_page = urllib2.urlopen(artist).read()
-        artist_soup = BeautifulSoup(artist_page)
-        song_player = artist_soup.findAll(
-            'meta', property="og:video")[0]['content']
-        song_title = artist_soup.findAll(
-            'meta', property="og:title")[0]['content']
+    song_player = song_soup.find('meta', property="og:video")
+    if song_player:
+        song_player = song_player['content']
+        song_title = song_soup.find('meta', property="og:title")['content']
 
-    return [song_player, song_title]
+    # If the first item is an artist, access the first album
+    else:
+        album = song + song_soup.find('div', 'ipCellSet').find('a')['href']
+        album_page = urllib2.urlopen(album).read()
+        album_soup = BeautifulSoup(album_page)
+        song_player = album_soup.find('meta', property="og:video")['content']
+        song_title = album_soup.find('meta', property="og:title")['content']
+
+    return (song_player, song_title)

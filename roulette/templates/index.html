@@ -49,11 +49,10 @@
 
 	<div id="curSong">
         {% if song %}
-           <iframe src="{{ song }}" width=400 height=100></iframe>
+           <iframe src="{{ song }}" width=400 height=100></iframe><br>
+		    <input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
+		    <input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
         {% endif %}
-		<br>
-		<input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
-		<input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
 	</div>
 	
 	<div id="holder">
@@ -70,8 +69,11 @@
 		
 		<div id="goodSongs">
 		<h1>Good Songs</h1>
-		Good Song Test 1
-		
+            <ul>
+	        {% for url, title in session.get('songs', {}).items(): %}	
+                <li><a href="{{ url }}">{{ title }}</a></li>
+            {% endfor %}
+            </ul>
 		</div>
 	
 	</div>
