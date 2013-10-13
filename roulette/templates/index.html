@@ -15,6 +15,11 @@
 		document.getElementById("Donate").style.visibility="hidden";
 		document.getElementById("Fun").style.visibility="hidden";
 		}
+		function finishSongs()
+		{
+			//create the thumbs up buttons for good songs
+			window.load("/finish");
+		}
 	</script>
 </head>
 
@@ -52,7 +57,7 @@
 					Word:<input type="text" name="search" style="font-size:28px;"/><br>
 					<input type="submit" class="myButton" value="Find My Song!" style="margin:20px"/>
 					<input type="submit" class="myButton" name="randomWord" value="Random Word" style="margin:20px"/>
-					<input type="submit" class="myButton" name="randomWord" value="Done" style="margin-left:150px"/>
+					<input type="button" class="myButton" name="DoneSongs" value="Done" onclick="finishSongs()" style="margin-left:150px"/>
 				</form>
 
 				<div id="curSong">
@@ -69,8 +74,12 @@
 			<div id="col3">
 				<h1>Good Songs</h1>
                     <ul>
-                    {% for url, title in session.get('songs', {}).items(): %}	
-                        <li><a href="{{ url }}">{{ title }}</a></li>
+                    {% for url, title in session.get('songs', {}).items(): %}
+					<li>
+						{% if  session.get("done") %}
+                        <input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24" style="padding:10px;">
+						{% endif %}
+						<a href="{{ url }}">{{ title }}</a></li>
                     {% endfor %}
                     </ul>
 			</div>
