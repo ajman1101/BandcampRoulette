@@ -5,7 +5,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
 	<title>Bandcamp Roulette</title>
 	<meta charset="utf-8">
-	<link rel='stylesheet' type='text/css' href='/static/css/style.css'/>
+	<link rel='stylesheet' type='text/css' href='../static/css/style.css'/>
 
 	<script>
 		function playDonate()
@@ -40,9 +40,9 @@
 	
 	<div id="search">
         <form action="/" method="get">
-            <input type="text" class="clearField" name="search"/><br>
-            <input type="submit" class="myButton" value="Find My Song!"/>
-            <input type="submit" class="myButton" name="randomWord" value="Random Word"/>
+            <input type="text" name="search"/><br>
+            <input type="submit" class="myButton" value="Find My Song!" style="margin-top:20px"/>
+            <input type="submit" class="myButton" name="randomWord" value="Random Word" style="margin-top:20px"/>
         </form>
 	</div>
 
@@ -51,8 +51,8 @@
            <iframe src="{{ song }}" width=400 height=100></iframe>
         {% endif %}
 		<br>
-		<input id="curThumbsUp"  class="myButton" type="image" src="/static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
-		<input id="curThumbsDown" class="myButton" type="image" src="/static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
+		<input id="curThumbsUp"  class="myButton" type="image" src="../static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
+		<input id="curThumbsDown" class="myButton" type="image" src="../static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
 	</div>
 	
 	<div id="holder">

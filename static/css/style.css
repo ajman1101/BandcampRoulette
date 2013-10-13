@@ -1,7 +1,7 @@
 body
 {
 /*thanks to http://subtlepatterns.com/pixel-weave/ for the background image*/
-background-image:url('/static/img/pixel_weave.png');
+background-image:url('../static/img/pixel_weave.png');
 background-repeat:repeat;
 font-family:'Libre Baskerville';
 float:center;
@@ -25,13 +25,12 @@ width:50%;
 }
 #search
 {
-margin-top:50px;
-margin-bottom:50px;
+margin-top:20px;
+padding-bottom:50px;
 }
 #rules
 {
 text-align:left;
-
 width:500px;
 float:left;
 width:50%;
@@ -106,10 +105,4 @@ text-shadow:0px 1px 0px #ffffff;
         position:relative;
         top:1px;
     }
-
-
-.thumbsDown
-{
-	
-}
 
