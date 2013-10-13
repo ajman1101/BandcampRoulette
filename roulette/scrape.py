@@ -29,6 +29,19 @@ def scrape(query):
         return None
 
     # Print out the url to that song
-    song_player = song_soup.findAll('meta', property="og:video")[0]['content']
-    song_title = song_soup.findAll('meta', property="og:title")[0]['content']
+    try:
+        song_player = song_soup.findAll(
+            'meta', property="og:video")[0]['content']
+        song_title = song_soup.findAll(
+            'meta', property="og:title")[0]['content']
+    except IndexError:
+        albums = song_soup.findAll('a', href=True)
+        artist = albums[0]['href'] + albums[1]['href']
+        artist_page = urllib2.urlopen(artist).read()
+        artist_soup = BeautifulSoup(artist_page)
+        song_player = artist_soup.findAll(
+            'meta', property="og:video")[0]['content']
+        song_title = artist_soup.findAll(
+            'meta', property="og:title")[0]['content']
+
     return [song_player, song_title]
