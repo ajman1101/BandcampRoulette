@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
-<link rel='stylesheet' type='text/css' href='test.css'/>
+<link rel='stylesheet' type='text/css' href='../static/css/style.css'/>
 <meta charset="utf-8">
 <!--Commented out for later dwolla integration
 	<script>
@@ -23,7 +23,7 @@
 <div id="body">
 
 <div id="header">
-<img src="../static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">
+<!--<img src="../static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">-->
 <h1>Bandcamp Roulette</h1>
 
 <!--Commented out for later dwolla integration
@@ -35,28 +35,6 @@
 
 	</div>-->
 
-<<<<<<< HEAD
-	<div id="curSong">
-        {% if song %}
-           <iframe src="{{ song }}" width=400 height=100></iframe><br>
-		    <input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
-		    <input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
-        {% endif %}
-	</div>
-	
-	<div id="holder">
-	
-		<div id="rules">
-		<h1>Rules</h1>
-		1. Think of one or two random words.<br><br>
-		2. Listen.<br><br>
-		3. Take a majority vote. <br> Is the Song Good or Not?<br><br>
-		4. Repeat<br><br>
-		5. Once you have a good list. <br> Chose the best song.<br><br>
-		6. You have found the best song on bandcamp!<br><br>
-=======
-</div>
-
 	<div id="main">
 
 		<div id="col1">
@@ -67,7 +45,6 @@
 				4. Repeat<br><br>
 				5. Once you have a good list. <br> Chose the best song.<br><br>
 				6. You have found the best song on bandcamp!
->>>>>>> 12ab74a37b3eb1f98f4e55123c0baa00c29725bb
 		</div>
 
 		<div id="col23">
@@ -81,30 +58,21 @@
 
 				<div id="curSong">
 					{% if song %}
-					   <iframe src="{{ song }}" width=400 height=100></iframe>
+					   <iframe src="{{ song }}" width=400 height=100></iframe><br>
+					    <input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
+					    <input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
 					{% endif %}
-					<br>
-					<input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24">
-					<input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24">
 				</div>
 			</div>
 		
-<<<<<<< HEAD
-		<div id="goodSongs">
-		<h1>Good Songs</h1>
-            <ul>
-	        {% for url, title in session.get('songs', {}).items(): %}	
-                <li><a href="{{ url }}">{{ title }}</a></li>
-            {% endfor %}
-            </ul>
-=======
-
 			<div id="col3">
 				<h1>Good Songs</h1>
-				Good Song Test 1
-
+                    <ul>
+                    {% for url, title in session.get('songs', {}).items(): %}	
+                        <li><a href="{{ url }}">{{ title }}</a></li>
+                    {% endfor %}
+                    </ul>
 			</div>
->>>>>>> 12ab74a37b3eb1f98f4e55123c0baa00c29725bb
 		</div>
 	</div>
 	
