@@ -58,9 +58,9 @@
 					<div id="col2">
 						<form action="" method="get">
 							<!--Name:<input type="text" name="username" style="font-size:28px;"/><br-->
-							Word:<input type="text" name="search" style="font-size:28px;"/><br>
+              Word:<input type="text" name="search" value="{{ search or '' }}" style="font-size:28px;"/><br>
               {% if song and not title %}
-                <p>{{ song }}</p>
+                <p>{{ song if search else '' }}</p>
               {% endif %}
 							<input type="submit" class="myButton" value="Find My Song!" style="margin:20px"/>
 							<input type="submit" class="myButton" name="random" value="Random Word" style="margin:20px"/> 
