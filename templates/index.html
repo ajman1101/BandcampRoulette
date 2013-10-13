@@ -39,12 +39,12 @@
 	</div>
 	
 	<div id="search">
-	
-	<input type="text" class="clearField" value="" style="width: 300px; font-size:26px; margin-bottom:20px;" /><br>
-	<input type="button" class="myButton" name="search" value="Find My Song!">
-	<input type="button" class="myButton" name="randomWord" value="Random Word">
+        <form action="/" method="get">
+            <input type="text" class="clearField" name="search"/><br>
+            <input type="submit" class="myButton" value="Find My Song!"/>
+            <input type="submit" class="myButton" name="randomWord" value="Random Word"/>
+        </form>
 	</div>
-	
 
 	<div id="curSong">
         {% if song %}

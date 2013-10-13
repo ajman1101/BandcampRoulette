@@ -10,6 +10,7 @@ text-align:center;
 #title
 {
 padding-top:50px;
+padding-bottom:10px;
 font-size:48px;
 }
 #holder
@@ -24,8 +25,8 @@ width:50%;
 }
 #search
 {
-padding-top:50px;
-padding-bottom:50px;
+margin-top:50px;
+margin-bottom:50px;
 }
 #rules
 {

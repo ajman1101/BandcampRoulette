@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/')
 def bandcampRoulette():
 
-    info = None
+    info = [None]
     if request.args.get("search"):
         info = scrape.scrape(request.args.get("search"))
     return render_template("index.html", song=info[0])
