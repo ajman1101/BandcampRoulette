@@ -21,13 +21,13 @@ font-family:'Libre Baskerville';
 }
 #col2 {
     float:left;
-    width:500px;
+    width:400px;
     padding:10px;
 }
 #col3 {
     float:right;
     width:332px;
-    padding:10px;
+    padding:5px;
 }
 #footer {
     clear:both;
