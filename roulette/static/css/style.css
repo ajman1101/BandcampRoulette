@@ -1,68 +1,40 @@
-body
-{
+html,
+body {
 /*thanks to http://subtlepatterns.com/pixel-weave/ for the background image*/
 background-image:url('../img/pixel_weave.png');
 background-repeat:repeat;
 font-family:'Libre Baskerville';
-float:center;
-text-align:center;
+    margin:0;
+    padding:0;
 }
-#title
-{
-padding-top:50px;
-padding-bottom:10px;
-font-size:48px;
+#body {
+    width:1024px;
+    margin:0 auto;
 }
-#holder
-{
-padding-left:100px;
+#header {
+    padding:10px;
 }
-#goodSongs
-{
-width:400px;
-float:right;
-width:50%;
+#col1 {
+    float:left;
+    width:222px;
+    padding:10px;
 }
-#search
-{
-margin-top:20px;
-padding-bottom:50px;
+#col2 {
+    float:left;
+    width:500px;
+    padding:10px;
 }
-#rules
-{
-text-align:left;
-width:500px;
-float:left;
-width:50%;
+#col3 {
+    float:right;
+    width:332px;
+    padding:10px;
 }
-#curThumbsUp
-{
-margin-top:20px;
-margin-right:25px;
-margin-bottom:25px;
+#footer {
+    clear:both;
+    padding:10px;
 }
 
-#curThumbsDown
-{
-margin-top:20px;
-margin-left:25px;
-margin-bottom:25px;
-}
-
-#curSong
-{
-margin-top:20px;
-margin-bottom:20px;
-}
-
-.input
-{
-text-shadow:0px 1px 0px #ffffff;
-
-}
-
-
-    .myButton {
+.myButton {
         
         -moz-box-shadow: 0px 1px 0px 0px #706d69;
         -webkit-box-shadow: 0px 1px 0px 0px #706d69;
@@ -111,4 +83,3 @@ text-shadow:0px 1px 0px #ffffff;
         position:relative;
         top:1px;
     }
-
