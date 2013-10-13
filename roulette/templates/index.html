@@ -84,7 +84,7 @@
                     {% for url, title in session.get('liked_songs', {}).items(): %}
 					<li>
 						{% if  session.get("done") %}
-            <a href='/results?song={{ url|urlencode }}' id="curThumbsUp"><img src="static/img/thumbsup.png" class="myButton" alt="Thumbs Up" height="40" width="24" style="padding:10px;"></img></a>
+            <a href='results?song={{ url|urlencode }}' id="curThumbsUp"><img src="static/img/thumbsup.png" class="myButton" alt="Thumbs Up" height="40" width="24" style="padding:10px;"></img></a>
 						{% endif %}
 						<a href="{{ url }}">{{ title }}</a></li>
                     {% endfor %}
