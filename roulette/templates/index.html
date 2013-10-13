@@ -69,10 +69,12 @@
 							{% if song and title %}
 							  <iframe src="{{ song }}" width=400 height=100></iframe><br>			    
                 <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>
-							  <a id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
+							  <a href="?none" id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
 							{% endif %}
-						</div>
-						  <input type="button" class="myButton" value="Done" onclick="finishSongs()" style="margin-left:150px"/>
+              {% if session.get('liked_songs') %}
+						    <input type="button" class="myButton" value="Done" onclick="finishSongs()" style="float:right; margin:20px"/>
+              {% endif %}
+						</form>
 					</div>
       {% endif %}
 		
