@@ -1,7 +1,7 @@
 body
 {
 /*thanks to http://subtlepatterns.com/pixel-weave/ for the background image*/
-background-image:url('/static/img/pixel_weave.png');
+background-image:url('/img/pixel_weave.png');
 background-repeat:repeat;
 font-family:'Libre Baskerville';
 float:center;
@@ -12,10 +12,28 @@ text-align:center;
 padding-top:50px;
 font-size:48px;
 }
+#holder
+{
+padding-left:100px;
+}
+#goodSongs
+{
+width:400px;
+float:right;
+width:50%;
+}
 #search
 {
 padding-top:50px;
 padding-bottom:50px;
+}
+#rules
+{
+text-align:left;
+
+width:500px;
+float:left;
+width:50%;
 }
 
 .input
@@ -75,5 +93,10 @@ text-shadow:0px 1px 0px #ffffff;
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+.thumbsDown
+{
+	
 }
 
