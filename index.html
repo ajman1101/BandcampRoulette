@@ -7,6 +7,19 @@
 	<title>Bandcamp Roulette</title>
 	<meta charset="utf-8">
 	<link rel='stylesheet' type='text/css' href='style.css'/>
+
+	<script>
+		function playDonate()
+		{
+		document.getElementById("Donate").style.visibility="hidden";
+		document.getElementById("Fun").style.visibility="hidden";
+		}
+		function playFun()
+		{
+		document.getElementById("Donate").style.visibility="hidden";
+		document.getElementById("Fun").style.visibility="hidden";
+		}
+	</script>
 	
 </head>
 <body>
@@ -18,29 +31,20 @@
 	</script>
 	<div id="title"><b>Bandcamp Roulette</b></div>
 	
-	<div id="payment">
-	<script
-	src="https://www.dwolla.com/scripts/button.min.js" class="dwolla_button" type="text/javascript"
-    	data-key="IICa5E98O1mb3gFoOM7hzYvjMTXx+iHQD6uJKHAiWletWpGLi4"
-  	data-redirect="http://www.csh.rit.edu/~ajman/bandcampproulette"
-  	data-label="Donate Prize"
-  	data-name="Bandcamp Roulette Prize"
-  	data-description="This is the prize for the winning user!"
-  	data-amount="$0.00"
-  	data-shipping="$0.00"
-  	data-tax="$0.00"
-	data-type="freetype"
-	>
-	</script>  
-	</div>
-
 	<div id="search">
 	
 	<input type="text" class="clearField" value="Enter a Random Word" />
 	<input type="button" class="myButton" name="search" value="Find My Song!">
 	<input type="button" class="myButton" name="randomWord" value="Random Word">
 	</div>
-	
+	<div id="payment">
+
+        <button type="button" id="Donate" onclick="playDonate()">Play for Donation</button>
+	<button type="button" id="Fun" onclick="playFun()">Play for Fun</button>
+
+
+	</div>
+
 	<div id="curSong">
 	
 	</div>
