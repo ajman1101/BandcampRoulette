@@ -7,12 +7,14 @@ font-family:'Libre Baskerville';
     margin:0;
     padding:0;
 }
+
 #body {
     width:1024px;
     margin:0 auto;
 }
 #header {
     padding:10px;
+	padding-bottom:50px;
 }
 #col1 {
     float:left;

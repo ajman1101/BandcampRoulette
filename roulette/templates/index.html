@@ -4,7 +4,6 @@
 <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
 <link rel='stylesheet' type='text/css' href='../static/css/style.css'/>
 <meta charset="utf-8">
-<!--Commented out for later dwolla integration
 	<script>
 		function playDonate()
 		{
@@ -16,24 +15,23 @@
 		document.getElementById("Donate").style.visibility="hidden";
 		document.getElementById("Fun").style.visibility="hidden";
 		}
-	</script>-->
+	</script>
 </head>
 
 <body>
 <div id="body">
 
 <div id="header">
-<!--<img src="../static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">-->
+<img src="../static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">
 <h1>Bandcamp Roulette</h1>
 
-<!--Commented out for later dwolla integration
 	<div id="payment">
 
         <button type="button" class="myButton" id="Donate" onclick="playDonate()">Play for Donation</button>
 	<button type="button" class="myButton" id="Fun" onclick="playFun()">Play for Fun</button>
 
 
-	</div>-->
+	</div>
 
 	<div id="main">
 
@@ -52,8 +50,9 @@
 				<form action="" method="get">
 					Name:<input type="text" name="username" style="font-size:28px;"/><br>
 					Word:<input type="text" name="search" style="font-size:28px;"/><br>
-					<input type="submit" class="myButton" value="Find My Song!" style="margin-top:20px"/>
-					<input type="submit" class="myButton" name="randomWord" value="Random Word" style="margin-top:20px"/>
+					<input type="submit" class="myButton" value="Find My Song!" style="margin:20px"/>
+					<input type="submit" class="myButton" name="randomWord" value="Random Word" style="margin:20px"/>
+					<input type="submit" class="myButton" name="randomWord" value="Done" style="margin-left:150px"/>
 				</form>
 
 				<div id="curSong">
