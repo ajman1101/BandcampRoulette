@@ -46,12 +46,12 @@ def show_results():
 
 @app.route('/finish')
 def finish_songs():
-    if not session['done']:
+    if not session.get('done'):
         session['done'] = True
     else:
         del session['done']
         session['liked_songs'] = dict()
-    redirect(url_for('index'))
+    return redirect(url_for('index'))
 
 
 #STEP:2 = temp code exchange
