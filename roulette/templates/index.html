@@ -52,23 +52,28 @@
 		</div>
 
 		<div id="col23">
-			<div id="col2">
-				<form action="" method="get">
-					Name:<input type="text" name="username" style="font-size:28px;"/><br>
-					Word:<input type="text" name="search" style="font-size:28px;"/><br>
-					<input type="submit" class="myButton" value="Find My Song!" style="margin:20px"/>
-					<input type="submit" class="myButton" name="randomWord" value="Random Word" style="margin:20px"/>
-					<input type="button" class="myButton" name="DoneSongs" value="Done" onclick="finishSongs()" style="margin-left:150px"/>
-				</form>
-
-				<div id="curSong">
-					{% if song %}
-					    <iframe src="{{ song }}" width=400 height=100></iframe><br>			    
-                        <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton" target="_blank"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>
-					    <a id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
-					{% endif %}
-				</div>
-			</div>
+      {% if not session.get('done') %}
+					<div id="col2">
+						<form action="" method="get">
+							Name:<input type="text" name="username" style="font-size:28px;"/><br>
+							Word:<input type="text" name="search" style="font-size:28px;"/><br>
+              {% if song and not title %}
+                <p>{{ song }}</p>
+              {% endif %}
+							<input type="submit" class="myButton" value="Find My Song!" style="margin:20px"/>
+							<input type="submit" class="myButton" name="randomWord" value="Random Word" style="margin:20px"/>
+						</form>
+        
+						<div id="curSong">
+							{% if song and title %}
+							  <iframe src="{{ song }}" width=400 height=100></iframe><br>			    
+                <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>
+							  <a id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
+							{% endif %}
+						</div>
+						  <input type="button" class="myButton" value="Done" onclick="finishSongs()" style="margin-left:150px"/>
+					</div>
+      {% endif %}
 		
 			<div id="col3">
 				<h1>Good Songs</h1>
