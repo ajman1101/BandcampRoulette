@@ -41,6 +41,17 @@ def addSong():
         return "Song added"
     return "Song not added"
 
+
+@app.route('/finish')
+def finish_songs():
+    if not session['done']:
+        session['done'] = True
+    else:
+        del session['done']
+        session['liked_songs'] = dict()
+    redirect(url_for('index'))
+
+
 #STEP:2 = temp code exchange
 @app.route("/dwolla/oauth_return")
 def dwolla_oauth_return():
