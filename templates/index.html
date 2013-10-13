@@ -22,21 +22,29 @@
 	
 </head>
 <body>
+	<script>
+	$(document).ready(function() {
+	$('.clearField').clearField();
+	});
+	
+	</script>
 	<div id="title"><b>Bandcamp Roulette</b></div>
 	
 	<div id="payment">
-	
-	</div>
 
+        <button type="button" class="myButton" id="Donate" onclick="playDonate()">Play for Donation</button>
+	<button type="button" class="myButton" id="Fun" onclick="playFun()">Play for Fun</button>
+
+
+	</div>
+	
 	<div id="search">
 	
-        <form action="/" method="get">
-            <input type="text" class="clearField" name="search"/>
-            <input type="submit" class="myButton" value="Find My Song!"/>
-            <input type="submit" class="myButton" name="randomWord" value="Random Word"/>
-        </form>
-
+	<input type="text" class="clearField" value="" style="width: 300px; font-size:26px; margin-bottom:20px;" /><br>
+	<input type="button" class="myButton" name="search" value="Find My Song!">
+	<input type="button" class="myButton" name="randomWord" value="Random Word">
 	</div>
+	
 
 	<div id="curSong">
         {% if song %}
@@ -66,6 +74,11 @@
 		</div>
 	
 	</div>
+	
+	
+	
+
+	
 
 </body>
 </html>
