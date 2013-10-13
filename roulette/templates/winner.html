@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+<link rel='stylesheet' type='text/css' href='static/css/style.css'/>
+<script>
+  function send_clear() {
+    location.replace('/finish');
+  };
+</script>
+</head>
+
+<body>
+<div id="body">
+
+<div id="header">
+<img src="static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">
+<h1>Bandcamp Roulette</h1>
+
+<p>The winning song!</p>
+<div>
+  <iframe src='{{ song_url }}' width=400 height=100></iframe>
+</div>
+<div>Other songs were:
+  <ul>
+    {% for url, song in session.get('liked_songs').items() %}
+      {% if not url == song_url %}
+      <li><a href="{{ url }}" target="_blank">{{ song }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+
+<input type="button" class="myButton" onclick="send_clear()" value="Give me a new game!" />
+
+</body>
+</html>

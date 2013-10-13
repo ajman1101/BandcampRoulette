@@ -37,6 +37,13 @@ def addSong():
     return redirect(url_for('index'))
 
 
+@app.route('/results')
+def show_results():
+    #winner= request.args.get('winner')
+    song = request.args.get('song')
+    return render_template('winner.html', user=None, song_url=song)
+
+
 @app.route('/finish')
 def finish_songs():
     if not session['done']:
