@@ -63,9 +63,7 @@
                 <p>{{ song }}</p>
               {% endif %}
 							<input type="submit" class="myButton" value="Find My Song!" style="margin:20px"/>
-							<!--input type="submit" class="myButton" name="randomWord"
-              value="Random Word" style="margin:20px"/-->
-        
+							<input type="submit" class="myButton" name="random" value="Random Word" style="margin:20px"/> 
 							{% if song and title %}
 							  <iframe src="{{ song }}" width=400 height=100></iframe><br>			    
                 <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>

@@ -14,16 +14,23 @@ def index():
     oauth_return_url = url_for('dwolla_oauth_return', _external=True)#point back to this file
     permissions = 'send'
     auth_url = ''#Dwolla.init_oauth_url(oauth_return_url, permissions)
-    url = None
-    title = None
-    if request.args.get("search"):
-        try:
-            url, title = scrape.scrape(request.args.get("search"))
-        except TypeError as e:
-            url = "No song found"
-            title = None
+    search = None
+    if request.args.get('random'):
+        with open('static/words.txt') as wordfile:
+            import random
+            line = random.choice(wordfile.readlines())
+        search = line
+     
+    elif request.args.get("search"):
+        search = request.args['search']
 
-    return render_template("index.html", song=url, title=title, auth_url=auth_url)
+    try:
+        url, title = scrape.scrape(search)
+    except TypeError as e:
+        url = "No song found"
+        title = None
+
+    return render_template("index.html", search=search, song=url, title=title, auth_url=auth_url)
 
 
 @app.route('/like')
