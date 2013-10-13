@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
-<link rel='stylesheet' type='text/css' href='../static/css/style.css'/>
+<link rel='stylesheet' type='text/css' href='static/css/style.css'/>
 <meta charset="utf-8">
 	<script>
 		function playDonate()
@@ -27,7 +27,7 @@
 <div id="body">
 
 <div id="header">
-<img src="../static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">
+<img src="static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">
 <h1>Bandcamp Roulette</h1>
 
 	<div id="payment">
@@ -62,11 +62,9 @@
 
 				<div id="curSong">
 					{% if song %}
-					   <iframe src="{{ song }}" width=400 height=100></iframe><br>
-					   <div id="centerStuff">
-							<input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24" style="padding:10px;margin:20px 50px 20px 80px">
-							<input id="curThumbsDown" class="myButton" type="image" src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="24" style="padding:10px;margin:20px 80px 20px 50px;">
-						</div>
+					    <iframe src="{{ song }}" width=400 height=100></iframe><br>			    
+                        <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton" target="_blank"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>
+					    <a id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
 					{% endif %}
 				</div>
 			</div>
@@ -74,7 +72,7 @@
 			<div id="col3">
 				<h1>Good Songs</h1>
                     <ul>
-                    {% for url, title in session.get('songs', {}).items(): %}
+                    {% for url, title in session.get('liked_songs', {}).items(): %}
 					<li>
 						{% if  session.get("done") %}
                         <input id="curThumbsUp"  class="myButton" type="image" src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="24" style="padding:10px;">
