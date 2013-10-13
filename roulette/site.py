@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, url_for, redirect, render_template, request, session
 import scrape
 
@@ -8,6 +10,8 @@ import scrape
 app = Flask(__name__)
 app.secret_key = "key"
 
+base_path = os.path.split(__name__)[0]
+
 
 @app.route('/')
 def index():
@@ -16,7 +20,7 @@ def index():
     auth_url = ''#Dwolla.init_oauth_url(oauth_return_url, permissions)
     search = None
     if request.args.get('random'):
-        with open('static/words.txt') as wordfile:
+        with open(os.path.join(base_path, 'static', 'words.txt')) as wordfile:
             import random
             line = random.choice(wordfile.readlines())
         search = line
