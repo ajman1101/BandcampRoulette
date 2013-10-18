@@ -5,7 +5,9 @@ import scrape
 
 #from dwolla import DwollaClientApp, DwollaUser
 
-#Dwolla = DwollaClientApp("Q/9GH5LwLTp06+VUj7Rt9iKFgyIOQmFZF0AxTEAYyWoC84P4YN", "ePRDZwcOOTjPbZ5rdyRvZpg6GMpHrUyxyQLNQzowFMiUtov2g")
+#Dwolla = DwollaClientApp(
+#    "Q/9GH5LwLTp06+VUj7Rt9iKFgyIOQmFZF0AxTEAYyWoC84P4YN",
+#    "ePRDZwcOOTjPbZ5rdyRvZpg6GMpHrUyxyQLNQzowFMiUtov2g")
 
 app = Flask(__name__)
 app.secret_key = "key"
@@ -15,26 +17,31 @@ base_path = os.path.split(__name__)[0]
 
 @app.route('/')
 def index():
-    oauth_return_url = url_for('dwolla_oauth_return', _external=True)#point back to this file
-    permissions = 'send'
-    auth_url = ''#Dwolla.init_oauth_url(oauth_return_url, permissions)
+#    oauth_return_url = url_for(
+#        'dwolla_oauth_return', _external=True)  # point back to this file
+#    permissions = 'send'
+    auth_url = ''  # Dwolla.init_oauth_url(oauth_return_url, permissions)
+    url = None
+    title = None
     search = None
+
     if request.args.get('random'):
         with open(os.path.join(base_path, 'static', 'words.txt')) as wordfile:
             import random
             line = random.choice(wordfile.readlines())
         search = line
-     
+
     elif request.args.get("search"):
         search = request.args['search']
 
-    try:
-        url, title = scrape.scrape(search)
-    except TypeError as e:
-        url = "No song found"
-        title = None
+        try:
+            url, title = scrape.scrape(search)
+        except TypeError:
+            url = "No song found"
+            title = None
 
-    return render_template("index.html", search=search, song=url, title=title, auth_url=auth_url)
+    return render_template(
+        "index.html", search=search, song=url, title=title, auth_url=auth_url)
 
 
 @app.route('/like')
@@ -66,21 +73,22 @@ def finish_songs():
 
 
 #STEP:2 = temp code exchange
-@app.route("/dwolla/oauth_return")
-def dwolla_oauth_return():
-    #oauth_return_url = url_for('dwolla_oauth_return', external=True)#print back to this file/URL
-    #code = request.args.get("code")
-    #token = Dwolla.get_oauth_token(code, redirect_uri=oauth_return_url)
-    #session['token'] = token
-    return 'Your never-expiering OAuth access token is: <b>%s</b>' #% token
+#@app.route("/dwolla/oauth_return")
+#def dwolla_oauth_return():
+#    oauth_return_url = url_for(
+#        'dwolla_oauth_return', external=True)#print back to this file/URL
+#    code = request.args.get("code")
+#    token = Dwolla.get_oauth_token(code, redirect_uri=oauth_return_url)
+#    session['token'] = token
+#    return 'Your never-expiering OAuth access token is: <b>%s</b>'  # % token
 
 
 #STEP 3: Take Token and swap it into the right place
-@app.route("/dwolla/donate")
-def donate():
-    #user = DwollaUser(session['token'])
-    #transactionId = user.send_funds(0.00, 'phone #', '[PIN]')
-    print #transactionId
+#@app.route("/dwolla/donate")
+#def donate():
+#    user = DwollaUser(session['token'])
+#    transactionId = user.send_funds(0.00, 'phone #', '[PIN]')
+#    print transactionId
 
 if __name__ == '__main__':
     app.debug = True
