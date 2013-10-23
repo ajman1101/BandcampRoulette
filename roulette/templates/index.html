@@ -14,6 +14,21 @@
         document.getElementById("Donate").style.visibility="hidden";
         document.getElementById("Fun").style.visibility="hidden";
       }
+      function like() {
+        var xmlhttp = new XMLHttpRequest();
+        var url = document.getElementsByTagName('iframe')[0].src;
+        var title = document.getElementsByTagName('h3')[0].textContent;
+        xmlhttp.onreadystatechange=function() {
+          if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var li_tag = document.createElement('li');
+            li_tag.innerHTML = xmlhttp.responseText;
+            document.getElementById('song_list').appendChild(li_tag);
+          }
+        };
+        xmlhttp.open('POST', 'like', true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send('url='+url+'&title='+title);
+      }
       function finishSongs() {
         //create the thumbs up buttons for good songs
         location.replace("finish");
@@ -62,7 +77,8 @@
                 {% if song and title %}
                   <h3>{{ title }}</h3>
                   <iframe src="{{ song }}" width=400 height=100></iframe><br>
-                  <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>
+                  <img src="static/img/thumbsup.png" class='myButton' alt="Thumbs Up"
+                       height="40" width="40" onclick='like()' />
                   <a href="?none" id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
                 {% endif %}
                 {% if session.get('liked_songs') %}

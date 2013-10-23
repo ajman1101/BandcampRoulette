@@ -17,14 +17,11 @@ base_path = os.path.split(__name__)[0]
 
 @app.route('/')
 def index():
-#    oauth_return_url = url_for(
-#        'dwolla_oauth_return', _external=True)  # point back to this file
+#    oauth_return_url = url_for('dwolla_oauth_return',
+#                               _external=True)  # point back to this file
 #    permissions = 'send'
     auth_url = ''  # Dwolla.init_oauth_url(oauth_return_url, permissions)
-    url = None
-    title = None
     search = None
-
     if request.args.get('random'):
         with open(os.path.join(base_path, 'static', 'words.txt')) as wordfile:
             import random
@@ -34,25 +31,28 @@ def index():
     elif request.args.get("search"):
         search = request.args['search']
 
-        try:
-            url, title = scrape.scrape(search)
-        except TypeError:
-            url = "No song found"
-            title = None
+    try:
+        url, title = scrape.scrape(search)
+    except TypeError:
+        url = "No song found"
+        title = None
 
-    return render_template(
-        "index.html", search=search, song=url, title=title, auth_url=auth_url)
+    return render_template("index.html", search=search, song=url, title=title,
+                           auth_url=auth_url)
 
 
-@app.route('/like')
+@app.route('/like', methods=['POST'])
 def addSong():
-    if request.args.get("url") and request.args.get("title"):
-        url = request.args["url"]
-        title = request.args["title"]
+    url = request.form.get("url")
+    title = request.form.get("title")
+    if url and title:
         if not session.get('liked_songs'):
             session['liked_songs'] = {}
+        if session['liked_songs'].get(url):
+            # No need to send a respone, it's already been seen
+            return '', 204
         session['liked_songs'][url] = title
-    return redirect(url_for('index'))
+    return u"<a href='{}' target='_blank'>{}</a>".format(url, title)
 
 
 @app.route('/results')
