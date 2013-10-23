@@ -60,6 +60,7 @@
                 <input type="submit" class="myButton" value="Find My Song!" style="margin:20px"/>
                 <input type="submit" class="myButton" name="random" value="Random Word" style="margin:20px"/>
                 {% if song and title %}
+                  <h3>{{ title }}</h3>
                   <iframe src="{{ song }}" width=400 height=100></iframe><br>
                   <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>
                   <a href="?none" id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
@@ -73,13 +74,13 @@
 
           <div id="col3">
             <h1>Good Songs</h1>
-            <ul>
+            <ul id='song_list'>
               {% for url, title in session.get('liked_songs', {}).items(): %}
                 <li>
                   {% if  session.get("done") %}
                     <a href='results?song={{ url|urlencode }}' id="curThumbsUp"><img src="static/img/thumbsup.png" class="myButton" alt="Thumbs Up" height="40" width="24" style="padding:10px;"></img></a>
                   {% endif %}
-                  <a href="{{ url }}">{{ title }}</a>
+                  <a href="{{ url }}" target="_blank">{{ title }}</a>
                 </li>
               {% endfor %}
             </ul>
