@@ -23,6 +23,8 @@ def index():
     #permissions = 'send'
     auth_url = '' # Dwolla.init_oauth_url(oauth_return_url, permissions)
     search = None
+    url = ''
+    title = ''
     if request.args.get('random'):
         with open(os.path.join(base_path, 'static', 'words.txt')) as wordfile:
             import random
@@ -36,7 +38,6 @@ def index():
             url, title = scrape.scrape(search)
         except TypeError:
             url = "No song found"
-            title = None
 
     return render_template("index.html", search=search, song=url, title=title,
                            auth_url=auth_url)
