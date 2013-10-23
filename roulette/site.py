@@ -17,10 +17,11 @@ base_path = os.path.split(__name__)[0]
 
 @app.route('/')
 def index():
-#    oauth_return_url = url_for('dwolla_oauth_return',
-#                               _external=True)  # point back to this file
-#    permissions = 'send'
-    auth_url = ''  # Dwolla.init_oauth_url(oauth_return_url, permissions)
+    #oauth_return_url = url_for('dwolla_oauth_return',
+    #                           _external=True, # point back to this file
+    #                          )
+    #permissions = 'send'
+    auth_url = '' # Dwolla.init_oauth_url(oauth_return_url, permissions)
     search = None
     if request.args.get('random'):
         with open(os.path.join(base_path, 'static', 'words.txt')) as wordfile:
@@ -31,11 +32,11 @@ def index():
     elif request.args.get("search"):
         search = request.args['search']
 
-    try:
-        url, title = scrape.scrape(search)
-    except TypeError:
-        url = "No song found"
-        title = None
+        try:
+            url, title = scrape.scrape(search)
+        except TypeError:
+            url = "No song found"
+            title = None
 
     return render_template("index.html", search=search, song=url, title=title,
                            auth_url=auth_url)
