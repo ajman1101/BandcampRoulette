@@ -1,100 +1,96 @@
 <!doctype html>
 <html lang="en">
-<head>
-<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
-<link rel='stylesheet' type='text/css' href='static/css/style.css'/>
-<meta charset="utf-8">
-	<script>
-		function playDonate()
-		{
-		document.getElementById("Donate").style.visibility="hidden";
-		document.getElementById("Fun").style.visibility="hidden";
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' type='text/css' href='static/css/style.css'/>
+    <meta charset="utf-8">
+    <script>
+      function playDonate() {
+        document.getElementById("Donate").style.visibility="hidden";
+        document.getElementById("Fun").style.visibility="hidden";
         window.open("{{ auth_url }}", "_blank");
-		}
-		function playFun()
-		{
-		document.getElementById("Donate").style.visibility="hidden";
-		document.getElementById("Fun").style.visibility="hidden";
-		}
-		function finishSongs()
-		{
-			//create the thumbs up buttons for good songs
-			location.replace("finish");
-		}
-	</script>
-</head>
+      }
+      function playFun() {
+        document.getElementById("Donate").style.visibility="hidden";
+        document.getElementById("Fun").style.visibility="hidden";
+      }
+      function finishSongs() {
+        //create the thumbs up buttons for good songs
+        location.replace("finish");
+      }
+    </script>
+  </head>
 
-<body>
-<div id="body">
+  <body>
+    <div id="body">
+      <div id="header">
+        <img src="static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">
+        <h1>Bandcamp Roulette</h1>
 
-<div id="header">
-<img src="static/img/logo-big.png" alt="BCR Logo" height="100" width="100" style="float:left;margin-right:50px;">
-<h1>Bandcamp Roulette</h1>
+        <!--div id="payment">
+            <button type="button" class="myButton" id="Donate"
+            onclick="playDonate()">Play for Donation</button>
+        <button type="button" class="myButton" id="Fun" onclick="playFun()">Play for Fun</button>
+        </div-->
 
-	<!--div id="payment">
+      </div>
 
-        <button type="button" class="myButton" id="Donate"
-        onclick="playDonate()">Play for Donation</button>
-	<button type="button" class="myButton" id="Fun" onclick="playFun()">Play for Fun</button>
+      <div id="main">
+        <div id="col1">
+          <h1>Rules</h1>
+          <ol>
+            <li>Think of one or two random words.</li>
+            <li>Listen.</li>
+            <li>Take a majority vote. <br> Is the song Good or Not?</li>
+            <li>Repeat</li>
+            <li>Once you have a good list. <br> Chose the best song.</li>
+            <li>You have found the best song on bandcamp!</li>
+          </ol>
+        </div>
 
+        <div id="col23">
+          {% if not session.get('done') %}
+            <div id="col2">
+              <form action="" method="get">
+                <!--Name:<input type="text" name="username" style="font-size:28px;"/><br-->
+                Word:<input type="text" name="search" value="{{ search or '' }}" style="font-size:28px;"/><br>
+                {% if song and not title %}
+                  <p>{{ song if search else '' }}</p>
+                {% endif %}
+                <input type="submit" class="myButton" value="Find My Song!" style="margin:20px"/>
+                <input type="submit" class="myButton" name="random" value="Random Word" style="margin:20px"/>
+                {% if song and title %}
+                  <iframe src="{{ song }}" width=400 height=100></iframe><br>
+                  <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>
+                  <a href="?none" id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
+                {% endif %}
+                {% if session.get('liked_songs') %}
+                  <input type="button" class="myButton" value="Done" onclick="finishSongs()" style="float:right; margin:20px"/>
+                {% endif %}
+              </form>
+            </div>
+          {% endif %}
 
-	</div-->
-</div>
+          <div id="col3">
+            <h1>Good Songs</h1>
+            <ul>
+              {% for url, title in session.get('liked_songs', {}).items(): %}
+                <li>
+                  {% if  session.get("done") %}
+                    <a href='results?song={{ url|urlencode }}' id="curThumbsUp"><img src="static/img/thumbsup.png" class="myButton" alt="Thumbs Up" height="40" width="24" style="padding:10px;"></img></a>
+                  {% endif %}
+                  <a href="{{ url }}">{{ title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
 
-	<div id="main">
-
-		<div id="col1">
-				<h1>Rules</h1>
-				1. Think of one or two random words.<br><br>
-				2. Listen.<br><br>
-				3. Take a majority vote. <br> Is the Song Good or Not?<br><br>
-				4. Repeat<br><br>
-				5. Once you have a good list. <br> Chose the best song.<br><br>
-				6. You have found the best song on bandcamp!
-		</div>
-
-		<div id="col23">
-      {% if not session.get('done') %}
-					<div id="col2">
-						<form action="" method="get">
-							<!--Name:<input type="text" name="username" style="font-size:28px;"/><br-->
-              Word:<input type="text" name="search" value="{{ search or '' }}" style="font-size:28px;"/><br>
-              {% if song and not title %}
-                <p>{{ song if search else '' }}</p>
-              {% endif %}
-							<input type="submit" class="myButton" value="Find My Song!" style="margin:20px"/>
-							<input type="submit" class="myButton" name="random" value="Random Word" style="margin:20px"/> 
-							{% if song and title %}
-							  <iframe src="{{ song }}" width=400 height=100></iframe><br>			    
-                <a href="like?url={{ song|urlencode }}&title={{ title|urlencode }}" id="curThumbsUp" class="myButton"><img src="static/img/thumbsup.png" alt="Thumbs Up" height="40" width="40"></img></a>
-							  <a href="?none" id="curThumbsDown" class="myButton"><img src="static/img/thumbsDown.png" alt="Thumbs Down" height="40" width="40"></img></a>
-							{% endif %}
-              {% if session.get('liked_songs') %}
-						    <input type="button" class="myButton" value="Done" onclick="finishSongs()" style="float:right; margin:20px"/>
-              {% endif %}
-						</form>
-					</div>
-      {% endif %}
-		
-			<div id="col3">
-				<h1>Good Songs</h1>
-                    <ul>
-                    {% for url, title in session.get('liked_songs', {}).items(): %}
-					<li>
-						{% if  session.get("done") %}
-            <a href='results?song={{ url|urlencode }}' id="curThumbsUp"><img src="static/img/thumbsup.png" class="myButton" alt="Thumbs Up" height="40" width="24" style="padding:10px;"></img></a>
-						{% endif %}
-						<a href="{{ url }}">{{ title }}</a></li>
-                    {% endfor %}
-                    </ul>
-			</div>
-		</div>
-	</div>
-	
-	<div id="footer">
+      <div id="footer">
         <a href="https://github.com/ajman1101/BandcampRoulette">Check out our source code!</a>	
-	</div>
-</div>
+	  </div>
+    </div>
 
-</body>
+  </body>
 </html>
